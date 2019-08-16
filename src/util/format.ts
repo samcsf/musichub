@@ -7,7 +7,7 @@ export function formatPrice(price: number): string {
 export function formatDuration(duration: number): string {
   let min = Math.floor(duration / 60);
   let sec = duration - min * 60;
-  return `${min}:${sec.toFixed(2)}`;
+  return `${min}:${sec > 10 ? sec : '0' + sec}`;
 }
 
 export function formatResultItem(item: SearchResultItem): object {
