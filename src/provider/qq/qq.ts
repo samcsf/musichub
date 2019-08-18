@@ -1,7 +1,7 @@
 import * as vm from 'vm';
 import * as _ from 'lodash';
-import * as util from '../util/format';
-import { SearchResultItem, SearchOption } from '../typings/search';
+import * as util from '../../util/format';
+import { SearchResultItem, SearchOption, PurchaseType } from '../../typings/search';
 const request = require('request-promise-native');
 
 const source = 'qq-music';
@@ -50,6 +50,7 @@ export default class QQMusic {
           source,
           songName: item.title,
           duration: item.interval,
+          purchaseType: PurchaseType.ONE_OFF,
           price: item.pay.price_track,
           albumName: item.album.title,
           singerName: item.singer.map(s => s.title).join(' '),

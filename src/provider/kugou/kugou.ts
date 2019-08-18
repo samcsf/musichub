@@ -1,6 +1,6 @@
 import * as vm from 'vm';
-import * as util from '../util/format';
-import { SearchResultItem, SearchOption } from '../typings/search';
+import * as util from '../../util/format';
+import { SearchResultItem, SearchOption, PurchaseType } from '../../typings/search';
 const request = require('request-promise-native');
 
 const source = 'kugou';
@@ -37,11 +37,12 @@ export default class Kugou {
     let res = ctx['res'];
     let list = res.data && res.data.lists;
     let formatList: Array<SearchResultItem> = list.map(
-      (item: KugouSearchResultItem) => {
+      (item: KugouSearchResultItem): SearchResultItem => {
         return {
           source,
           songName: item.SongName,
           duration: item.Duration,
+          purchaseType: PurchaseType.ONE_OFF,
           price: item.Price,
           albumName: item.AlbumName,
           singerName: item.SingerName,

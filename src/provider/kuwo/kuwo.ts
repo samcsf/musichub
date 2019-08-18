@@ -1,7 +1,7 @@
 import * as vm from 'vm';
 import * as _ from 'lodash';
-import * as util from '../util/format';
-import { SearchResultItem, SearchOption } from '../typings/search';
+import * as util from '../../util/format';
+import { SearchResultItem, SearchOption, PurchaseType } from '../../typings/search';
 const request = require('request-promise-native');
 
 const source = 'kuwo';
@@ -31,6 +31,7 @@ export default class Kuwo {
           source,
           songName: item.name,
           duration: item.duration,
+          purchaseType: PurchaseType.MEMBERSHIP,
           price: 0,
           albumName: item.album,
           singerName: item.artist,
